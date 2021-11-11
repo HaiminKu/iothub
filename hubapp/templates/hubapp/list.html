@@ -1,0 +1,51 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'list' %}">Manage</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        My Devices
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    {% load static %}
+    <p class="editing"><img src="{% static 'hubapp/img/editing.png' %}" alt="this should be a picture..." style="width: 22px; height: auto; vertical-align:middle;">Click 'No.' to view details of your device.
+    </p>
+     <table class="devices-list">
+         <thead>
+            <tr>
+                <th>No.</th>
+                <th>DEVICE NAME</th>
+                <th>DEVICE TYPE</th>
+                <th>DEVICE MODEL</th>
+                <th>LAST UPDATED</th>
+                <th>REGISTERED</th>
+                <th></th>
+            </tr>
+        </thead>
+         <tbody>
+        {% for item in registered_devices %}
+             <tr>
+                 <td>
+                    <a href="{% url 'detail' id=item.id %}">{{ item.id }}</a>
+                </td>
+                 <td>{{ item.device_name }}</td>
+                 <td>{{ item.device_type }}</td>
+                 <td>{{ item.device_model }}</td>
+                 <td>{{ item.last_updated }}</td>
+                 <td>{{ item.registered }}</td>
+                 {% if user.is_active  %}
+                    <td><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></td>
+                {% else %}
+                    <td><span class="hidden"><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></span></td>
+                {% endif %}
+
+             </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+{% endblock content %}

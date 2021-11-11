@@ -1,0 +1,39 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'search' %}">Search</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        Search Results
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    <div>
+        <p>You have searched for : <b>"{{ query }}"</b></p>
+    </div>
+    <table class="devices-list">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>DEVICE NAME</th>
+                <th>DEVICE TYPE</th>
+                <th>DEVICE MODEL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+            <tr>
+                <td>{{device.id}}</td>
+                <td>{{device.device_name}}</td>
+                <td>{{device.device_type}}</td>
+                <td>{{device.device_model}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+

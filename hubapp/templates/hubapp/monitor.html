@@ -1,0 +1,91 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'monitor' %}">Manage</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        Data Visualization
+    </h2>
+{% endblock title %}
+
+{% block content %}
+  {% load static %}
+  <div id="filter">
+    <form id="filter-form" method='POST'>
+      {% csrf_token %}
+      <select name="select-device" id="dropdown">
+        <option selected disabled>Select a device</option>
+        <option value="Temperature">Temperature</option>
+        <option value="Humidity">Humidity</option>
+        <option value="Optic">Optic</option>
+        <option value="Proximity">Proximity</option>
+        <option value="Relay-Module">Relay Module</option>
+      </select>
+
+      <button type="submit" value="btn-hide">Filter</button>
+      <div id="time-quantum" class="hide">
+        <table class="filter-table">
+          <tbody>
+          <tr aria-label="Minutes">
+            <th>Minutes</th>
+            <td>
+              <input type="radio" name="chk_info" value="Minutes_10">10
+            </td>
+            <td>
+              <input type="radio" name="chk_info" value="Minutes_20">20
+            </td>
+            <td>
+              <input type="radio" name="chk_info" value="Minutes_30">30
+            </td>
+          </tr>
+          <tr aria-label="Hours">
+            <th>Hours</th>
+            <td>
+              <input type="radio" name="chk_info" value="Hours_1">1
+            </td>
+            <td>
+              <input type="radio" name="chk_info" value="Hours_2">2
+            </td>
+            <td>
+              <input type="radio" name="chk_info" value="Hours_4">4
+            </td>
+          </tr>
+          <tr aria-label="Days">
+            <th>Days</th>
+            <td>
+              <input type="radio" name="chk_info" value="Days_1">1
+            </td>
+            <td>
+              <input type="radio" name="chk_info" value="Dyas_3">3
+            </td>
+            <td>
+              <input type="radio" name="chk_info" value="Days_7">7
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button type="submit" value="btn-apply">Apply</button>
+        <button type="submit" value="btn-reset">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="bottom-row">
+    <div class="left-column">
+      <canvas id="barCanvas";></canvas>
+    </div>
+
+    <div class="mid-column">
+      <canvas id="pieCanvas";></canvas>
+    </div>
+
+    <div class="right-column">
+      <canvas id="lineCanvas";></canvas>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+

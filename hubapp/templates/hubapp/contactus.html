@@ -1,0 +1,21 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'contactus' %}">Contact us</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        Get in touch!
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    <div>
+        <p class="italic-text">Interested in our services? Talk to our expert</p>
+        <p><b>US</b>: +1 (765) 123 4567</p>
+        <p><b>Email</b>: ku26@purdue.edu | yeori0319@gamil.com</p>
+    </div>
+{% endblock content %}
+

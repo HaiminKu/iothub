@@ -1,0 +1,25 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'list' %}">Manage</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        {{device.device_name}}: detail view
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    <div>
+      <p>Device Name: {{device.device_name}}</p>
+    </div>
+     <div>
+      <p>Device Type: {{device.device_type}}</p>
+    </div>
+    <div>
+      <p>Device: Model: {{device.device_model}}</p>
+    </div>
+  <div><a href="{% url 'list' %}">Goto Device List</a></div>
+{% endblock content %}

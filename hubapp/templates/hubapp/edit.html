@@ -1,0 +1,21 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'list' %}">Manage</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        Change Devices
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    <form id="edit-form" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+        <input type="reset" value="Cancel">
+    </form>
+{% endblock content %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Hub</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'hubapp/style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <div id="nav-left">
+            <a href="{% url 'index' %}" class="selected"><img src="{% static 'hubapp/img/smarthome.png' %}" alt="this should be a picture..." style="width: 40px; height: auto; vertical-align:middle; margin-right:20px;">IoT Hub</a>
+            <a href="{% url 'add' %}" class="tab">Connect</a>
+            <a href="{% url 'list' %}" class="tab">Manage</a>
+            <a href="{% url 'monitor' %}" class="tab">Monitor</a>
+        </div>
+
+        <div id="nav-search">
+            <form class="search-form" action="{% url 'search' %}" method="GET">
+                {% csrf_token %}
+                <input id="search" type="text" placeholder="Search" name="q">
+                <button type="submit" id="search-button"><img src="{% static 'hubapp/img/search.png' %}" alt="Submit" style="width: 14px; height: auto; vertical-align:middle;"></button>
+            </form>
+        </div>
+
+        <div id="nav-right">
+          <img src="{% static 'hubapp/img/user.png' %}" alt="this should be a picture..." style="width: 20px; height: auto; vertical-align:middle;">
+            {% if user.is_authenticated  %}
+                <a href="{% url 'signout' %}">Sign out</a> |
+            {% else %}
+                <a href="{% url 'signin' %}">Sign in</a> |
+            {% endif %}
+          <img src="{% static 'hubapp/img/call.png' %}" alt="this should be a picture..." style="width: 19px; height: auto; vertical-align:middle;">
+          <a href="{% url 'contactus' %}">Contact us</a>
+        </div>
+      </div>
+
+      <div id="content">
+        <div class="top-row">
+          <div id="intro-container">
+            <p class="italic-text">Welcome to IoT Hub!</p>
+            <h1>IoT Hub</h1>
+            <p>Connect and manage your IoT devices at-scale</p>
+              {% if user.is_authenticated  %}
+                <a href="{% url 'signup' %}"><button class="hidden">Create your account →</button></a>
+              {% else %}
+                <a href="{% url 'signup' %}"><button>Create your account →</button></a>
+              {% endif %}
+          </div>
+        </div>
+        <div class="bottom-row">
+          <div class="left-column">
+            <h4>Connect your devices</h4>
+            <p>You can register your IoT devices to IoT Hub. Register and scale your things.</p>
+            <p class="italic-text"><a href="{% url 'add' %}">>> Go to "Connect"</a></p>
+          </div>
+          <div class="mid-column">
+             <h4>Manage your devices</h4>
+            <p>You can manage your registered devices easily. Manage your devices at once and update them easily.</p>
+            <p class="italic-text"><a href="{% url 'list' %}">>> Go to "Manage"</a></p>
+          </div>
+          <div class="right-row">
+             <h4>Monitor</h4>
+            <p>You can monitor data generated from your connected devices. Visualize your data freely with personalized filters.</p>
+            <p class="italic-text"><a href="{% url 'monitor' %}">>> Go to "Monitor"</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer">
+        <div id="footer-menu">
+          <a href="{% url 'index' %}" class="selected">Home</a> |
+          <a href="{% url 'contactus' %}">Contact us</a>
+        </div>
+        <span><p>Copyright 2021 All Rights Reserved</p></span> |
+        <span>Icons made by <a href="" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span>
+      </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="#">Home</a> >
+    <a href="{% url 'add' %}">Connect</a>
+{% endblock header %}
+
+{% block title %}
+    <div class="register-header">
+        <p>Connect a thing to IoT Hub!</p>
+        <h2>Register a device</h2>
+    </div>
+{% endblock title %}
+
+{% block content %}
+    <form id="register-form" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" onclick="send()">
+        <input type="reset" value="Cancel">
+    </form>
+{% endblock content %}

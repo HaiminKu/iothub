@@ -1,0 +1,31 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'signin' %}">Sign in</a>
+{% endblock header %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+<div class="alt-left-column">
+    <h3>Sign in</h3>
+    <form id="login-form" method="POST">
+        {% csrf_token %}
+        {{error}}
+        <div class="input-box" >
+            <input id="username" type="text" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-box" >
+            <input id="password" type="text" name="password" placeholder="Password" required>
+        </div>
+        <div class="submit">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+ <div class="alt-right-column">
+     <a href="{% url 'signup' %}">Create a new account</a>
+ </div>
+{% endblock content %}

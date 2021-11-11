@@ -1,0 +1,317 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+    padding: 2vh 4vw 2vh 4vw;
+}
+
+/* Style the header */
+#header {
+    padding: 2vh 4vw 2vh 4vw;
+    font-family: Helvetica, sans-serif;
+}
+
+#header > div {
+    display: inline-block;
+}
+
+#nav-left {
+    min-width: 55%;
+}
+
+#nav-left .tab:hover {
+    background-color: lightgray;
+}
+
+#nav-left > a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    margin: 5px;
+}
+
+#nav-left > a.selected {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+#nav-right {
+  float:  right;
+  min-width: 10%;
+}
+
+#nav-right > a {
+    text-decoration: none;
+    margin-right: 5px;
+    color: black;
+}
+
+img {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#search {
+    min-width: 15%;
+}
+
+/* Style the content */
+#content{
+    padding: 2vh 4vw 2vh 4vw;
+    clear: left;
+    overflow: auto;
+}
+
+.top-row {
+    background-color: lightgray;
+}
+
+
+#title-container {
+    padding: 3vh 2vw 1vh 2vw;
+}
+
+#title-container > a {
+    margin: 5px;
+    color: black;
+}
+
+#intro-container {
+    padding: 10vh
+}
+
+#main-container {
+    padding: 2vh 2vw 7vh 2vw;
+}
+
+/*Style the Detail Page*/
+
+#select-device {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+#dropdown {
+    cursor:pointer;
+    padding: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+/* Style the Register Page */
+.register-header {
+    padding: 25px 30px;
+    width: 100%;
+    min-height: 80px;
+    background-color: pink;
+    color: white;
+    box-shadow: 0 1px 0 #d9d9d9;
+}
+
+#register-form {
+    padding: 25px 30px;
+    background-color: darkgray;
+
+    font-weight: bold;
+}
+
+#register-form > div {
+    margin-bottom: 10px;
+}
+
+/* Style the Alternate Page */
+.alt-left-column {
+    border-right: 4px solid pink;
+}
+
+.input-box > input {
+    margin: 10px;
+    border: none;
+    border-bottom: solid 1px lightgray;
+    padding: 10px 0px 10px 0px;
+    font-size: 12pt;
+}
+
+.submit {
+    margin-top: 20px;
+}
+
+.submit input {
+    padding: 5px 15px 5px 15px;
+    background-color: pink;
+    color: white;
+    border: 0;
+    border-radius: 40px;
+}
+
+.alt-right-column a {
+    color: pink;
+    font-size: 14pt;
+    font-weight: bold
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+button {
+    cursor:pointer;
+    padding: 10px;
+}
+
+ul {
+    background-color: pink;
+    padding: 3vh;
+    margin-left:0;
+    margin-top:0;
+    width: 15vw;
+}
+
+li {
+    list-style: none;
+    margin-top: 15px;
+}
+
+h3 {
+    color: #777777;
+}
+
+/* Style the table */
+.devices-list {
+    min-width: 50%;
+    border-collapse: collapse;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.devices-list thead tr {
+    background-color: black;
+    color: white;
+}
+
+.devices-list th, td {
+    padding:  3vh;
+}
+
+.devices-list thead tr, tbody tr {
+    border-bottom: 1px solid lightgray;
+}
+
+.devices-list tbody tr:nth-of-type(odd) {
+    background-color: #F5F5F5;
+}
+
+.devices-list tbody tr:last-of-type {
+    border-bottom: 2px solid darkgray;
+}
+
+.number {
+    color: #00a1c9;
+    font-weight: bold;
+}
+
+.editing {
+    color: blue;
+    font-weight: bold;
+}
+
+.help_text {
+    font-weight: normal;
+    color: #424242;
+}
+
+.hidden {
+    display: none;
+}
+
+#search-button {
+    padding:2px;
+}
+
+/* Style the footer */
+#footer {
+    padding: 2vh 4vw 2vh 4vw;
+    font-family: Helvetica, sans-serif;
+    font-size: 10pt;
+}
+
+#footer > span {
+    display: inline-block;
+    margin: 5px;
+}
+
+#footer-menu {
+    float: right;
+}
+
+#footer-menu > a {
+    margin: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+/* On screens that are 1400px wide or less, make the menu links stack on top of each other instead of next to each other*/
+@media screen and (min-width: 400px) {
+    .left-column{
+        width: 100%;
+    }
+
+    .mid-column{
+        width: 100%;
+    }
+
+    .right-column{
+        width: 100%;
+    }
+
+    .alt-left-column{
+        width: 100%;
+        text-align: center;
+    }
+
+    .alt-right-column{
+        width: 100%;
+        text-align: center;
+        margin-top: 5vh;
+    }
+
+}
+
+@media screen and (min-width: 1000px) {
+    .left-column {
+        float: left;
+        width: 35%;
+    }
+
+    .mid-column {
+        float: left;
+        width: 35%;
+    }
+
+    .right-column{
+        float: left;
+        width: 30%;
+    }
+
+    .bottom-row > div {
+        max-height: 30vh;
+        overflow: auto;
+    }
+
+    .alt-left-column {
+        float: left;
+        width: 50%;
+        text-align: center;
+        margin-top: 10vh;
+    }
+
+    .alt-right-column{
+        float: left;
+        width: 50%;
+        text-align: center;
+        margin-top: 20vh;
+    }
+}
