@@ -1,0 +1,1 @@
+web: gunicorn iothub.wsgi --log-file -
