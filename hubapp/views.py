@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Devices
 from .forms import DeviceForm, UserForm
 from django.db.models import Q
-from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 import requests
 
@@ -28,6 +27,7 @@ def add(request):
         form = DeviceForm(request.POST)
         if form.is_valid():
             form.save()
+        return render(request, 'hubapp/add.html', {'form': DeviceForm()})
     else:
         if request.user.is_authenticated:
             newform = DeviceForm()
