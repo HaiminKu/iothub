@@ -1,0 +1,27 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'list' %}">Manage</a> >
+    <a href="">Delete</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        Delete Device
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    {% load static %}
+    <form id="delete-form" method="POST">
+        {% csrf_token %}
+        <div>
+            <p style="color:red;">Are you sure to delete this device?</p>
+        </div>
+        <div>
+            <input type="submit" value="Yes" class="input-button">
+            <input type="reset" onClick="location.href='{% url 'list' %}'" value="No" class="input-button">
+        </div>
+    </form>
+{% endblock content %}

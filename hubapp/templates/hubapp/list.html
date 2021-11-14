@@ -25,13 +25,18 @@
                 <th>LAST UPDATED</th>
                 <th>REGISTERED</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
          <tbody>
         {% for item in registered_devices %}
              <tr>
                  <td>
-                    <a href="{% url 'detail' id=item.id %}">{{ item.id }}</a>
+                     {% if user.is_active  %}
+                        <a href="{% url 'detail' id=item.id %}">{{ item.id }}</a>
+                     {% else %}
+                        {{ item.id }}
+                     {% endif %}
                 </td>
                  <td>{{ item.device_name }}</td>
                  <td>{{ item.device_type }}</td>
@@ -39,11 +44,24 @@
                  <td>{{ item.last_updated }}</td>
                  <td>{{ item.registered }}</td>
                  {% if user.is_active  %}
-                    <td><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></td>
+                    {% if request.user.is_staff %}
+                        <td><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></td>
+                    {% else %}
+                        <td><button onclick="location.href='{% url 'permission' %}'">Edit</button></td>
+                    {% endif %}
                 {% else %}
                     <td><span class="hidden"><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></span></td>
                 {% endif %}
 
+                 {% if user.is_active  %}
+                    {% if request.user.is_staff %}
+                        <td><button onclick="location.href='{% url 'delete' id=item.id %}'">Delete</button></td>
+                    {% else %}
+                        <td><button onclick="location.href='{% url 'permission' %}'">Delete</button></td>
+                    {% endif %}
+                {% else %}
+                    <td><span class="hidden"><button onclick="location.href='{% url 'delete' id=item.id %}'">Delete</button></span></td>
+                {% endif %}
              </tr>
         {% endfor %}
          </tbody>

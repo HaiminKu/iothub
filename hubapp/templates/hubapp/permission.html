@@ -1,0 +1,17 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="#">Home</a> >
+    <a href="{% url 'add' %}">Connect</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        No Permission
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    <p class="italic-text">Access to this page is restricted</p><br>
+    <a href="{% url 'signin' %}">Are you staff?</a>
+{% endblock content %}

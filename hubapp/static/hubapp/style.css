@@ -263,6 +263,14 @@ p > a {
     margin-top: -10%;
 }
 
+.graph-background {
+    margin-top: 100px;
+}
+
+.input-button {
+    padding: 10px;
+}
+
 /* Style the footer */
 #footer {
     padding: 2vh 4vw 2vh 4vw;
@@ -326,11 +334,6 @@ p > a {
     .right-column{
         float: left;
         width: 30%;
-    }
-
-    .bottom-row > div {
-        max-height: 30vh;
-        overflow: auto;
     }
 
     .alt-left-column {

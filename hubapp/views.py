@@ -30,8 +30,11 @@ def add(request):
         return render(request, 'hubapp/add.html', {'form': DeviceForm()})
     else:
         if request.user.is_authenticated:
-            newform = DeviceForm()
-            return render(request, 'hubapp/add.html', {'form': newform})
+            if request.user.is_staff:
+                newform = DeviceForm()
+                return render(request, 'hubapp/add.html', {'form': newform})
+            else:
+                return render(request, 'hubapp/permission.html', {})
         else:
             return redirect('signin')
 
@@ -49,8 +52,20 @@ def edit(request, id):
         form = DeviceForm(instance=dv)
     return render(request, 'hubapp/edit.html', {'form': form})
 
+def delete(request, id):
+    # Using GET method to retrieve a device
+    dv = Devices.objects.get(pk=id)
+
+    if request.method == 'POST':
+        dv.delete()
+        return redirect('list')
+    return render(request, 'hubapp/delete.html', {'dv': dv})
+
 def monitor(request):
-    return render(request, 'hubapp/monitor.html', {})
+    if request.user.is_authenticated:
+        return render(request, 'hubapp/monitor.html', {})
+    else:
+        return redirect('signin')
 
 def signup(request):
     if request.method == 'POST':
@@ -115,6 +130,8 @@ def news(request):
         })
     return render(request, 'hubapp/news.html', context)
 
+def permission(request):
+    return render(request, 'hubapp/permission.html', {})
 
 
 
