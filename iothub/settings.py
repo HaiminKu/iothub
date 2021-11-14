@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d@x!0j6qan#894s_p)*zi8^c9=g!d6rk6dca%e#d75kd5o9j+4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['calm-plateau-11995.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['calm-plateau-11995.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -144,3 +144,5 @@ STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+APIKEY = "d88506917e0742419f08fd41701b4b04"

@@ -1,0 +1,32 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'news' %}">News</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        IoT News
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    {% load static %}
+    <div class="articles-container">
+        {% for value in data %}
+        <div class="article-container">
+            <div class="article-top">
+                <div>
+                    <p class="article-title"><a href="{{value.url}}">{{ value.title }}</a></p>
+                    <p class="card-text">{{ value.description }}</p>
+                    <p class="article-date"><small class="text-muted">{{ value.publishedat }}</small></p>
+                </div>
+            </div>
+            <div class="article-bottom">
+                <img src="{{ value.image }}" class="article-img" alt="this should be a picture...">
+            </div>
+        </div>
+         {% endfor %}
+    </div>
+{% endblock content %}

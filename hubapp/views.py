@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Devices
 from .forms import DeviceForm, UserForm
 from django.db.models import Q
+from django.http import HttpResponse, JsonResponse
+from django.conf import settings
+import requests
 
 # Create your views here.
 
@@ -85,6 +88,33 @@ def search(request):
 
 def contactus(request):
     return render(request, 'hubapp/contactus.html', {})
+
+temp_img = "https://images.pexels.com/photos/3225524/pexels-photo-3225524.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+
+def news(request):
+    topic = "iot"
+    url = "https://newsapi.org/v2/everything?language={}&q={}&sortBy={}&page={}&apiKey={}".format(
+         "en", topic, "publishedAt", 1, settings.APIKEY
+    )
+    r = requests.get(url=url)
+    data = r.json()
+
+    data = data["articles"]
+    context = {
+        "success": True,
+        "data": [],
+        "search": topic
+    }
+    for i in data:
+        context["data"].append({
+            "title": i["title"],
+            "description": "" if i["description"] is None else i["description"],
+            "url": i["url"],
+            "image": temp_img if i["urlToImage"] is None else i["urlToImage"],
+            "publishedat": i["publishedAt"]
+        })
+    return render(request, 'hubapp/news.html', context)
+
 
 
 

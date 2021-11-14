@@ -67,7 +67,6 @@ img {
     background-color: lightgray;
 }
 
-
 #title-container {
     padding: 3vh 2vw 1vh 2vw;
 }
@@ -179,6 +178,10 @@ h3 {
     color: #777777;
 }
 
+p > a {
+    color: #2979ff;
+}
+
 /* Style the table */
 .devices-list {
     min-width: 50%;
@@ -229,6 +232,35 @@ h3 {
 
 #search-button {
     padding:2px;
+}
+
+.article-container {
+    margin-bottom: 30px;
+    border-radius: 30px;
+    padding: 30px;
+    background-color: white;
+    font-family: Helvetica, sans-serif;
+}
+
+.article-title {
+    font-size: 15pt;
+    font-weight: bold;
+
+}
+
+.article-date {
+    color: gray;
+}
+
+.article-bottom {
+       max-width: 1000px;
+       max-height: 400px;
+       overflow: hidden;
+    }
+
+.article-img {
+    max-width: initial;
+    margin-top: -10%;
 }
 
 /* Style the footer */

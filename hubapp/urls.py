@@ -14,4 +14,5 @@ urlpatterns = [
     path('monitor/', views.monitor, name='monitor'),
     path('search/', views.search, name='search'),
     path('contactus/', views.contactus, name='contactus'),
+    path('news/', views.news, name='news'),
 ]
