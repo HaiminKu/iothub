@@ -86,7 +86,7 @@
                         <div class="card-body">
                             {% for device in new_devices %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Added <span style="font-weight: bold;">{{ device.device_name }}</span>.
                                 </div>
                             {% endfor %}
@@ -100,7 +100,7 @@
                        <div class="card-body">
                             {% for e_device in edited_devices %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Edited <span style="font-weight: bold;">{{ e_device.device_name }}</span>.
                                 </div>
                             {% endfor %}
@@ -114,7 +114,7 @@
                        <div class="card-body">
                             {% for d_device in deleted %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Deleted a device.
                                 </div>
                             {% endfor %}
@@ -128,7 +128,7 @@
                         <div class="card-body">
                             {% for follower in follower_list %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     <span style="font-weight: bold;">{{ follower.creator }}</span> started following you.
                                 </div>
                             {% endfor %}
@@ -142,7 +142,7 @@
                         <div class="card-body">
                             {% for following in following_list %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Started following <span style="font-weight: bold;">{{ following.to }}</span>.
                                 </div>
                             {% endfor %}
@@ -163,7 +163,7 @@
                             <div class="card-body">
                                 {% for f_device in fuser_new_devices %}
                                     <div class="btn btn-block bg-secondary text-light text-left">
-                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                         <span style="font-weight: bold;">{{ f_device.user }}</span> added a new device.
                                     </div>
                                 {% endfor %}
@@ -177,7 +177,7 @@
                            <div class="card-body">
                                 {% for f_e_device in fuser_edited_devices %}
                                     <div class="btn btn-block bg-secondary text-light text-left">
-                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                         <span style="font-weight: bold;">{{ f_e_device.user }}</span> edited a device.
                                     </div>
                                 {% endfor %}
@@ -191,7 +191,7 @@
                             <div class="card-body">
                                 {% for f_d_device in fuser_deleted_devices %}
                                     <div class="btn btn-block bg-secondary text-light text-left">
-                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                         <span style="font-weight: bold;">{{ f_d_device.creator}}</span> deleted a device.
                                     </div>
                                 {% endfor %}
@@ -205,7 +205,7 @@
                             <div class="card-body">
                                 {% for f in fuser_following_list %}
                                     <div class="btn btn-block bg-secondary text-light text-left">
-                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                         <span style="font-weight: bold;">{{ f.creator }}</span> started following <span style="font-weight: bold;">{{ f.to }}</span>
                                     </div>
                                 {% endfor %}

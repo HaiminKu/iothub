@@ -20,7 +20,7 @@
     <div>
         {% load static %}
         <div class="profile-container">
-            <img src="{% static 'hubapp/img/fox.png' %}" alt="this should be a picture..." class="top-profile-img">
+            <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="top-profile-img">
             <div class="top-profile">
                 <span style="font-weight:bold;">Following</span>
                 <p style="text-align: center;"><a href="{% url 'followinglist' request.user.id %}">{{ request.user.following.all|length }}</a></p>
@@ -65,7 +65,7 @@
                         <div class="card-body">
                             {% for device in new_devices %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Added <span style="font-weight: bold;">{{ device.device_name }}</span>.
                                 </div>
                             {% endfor %}
@@ -79,7 +79,7 @@
                        <div class="card-body">
                             {% for e_device in edited_devices %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Edited <span style="font-weight: bold;">{{ e_device.device_name }}</span>.
                                 </div>
                             {% endfor %}
@@ -93,7 +93,7 @@
                        <div class="card-body">
                             {% for d_device in deleted %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Deleted a device.
                                 </div>
                             {% endfor %}
@@ -107,7 +107,7 @@
                         <div class="card-body">
                             {% for follower in follower_list %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     <span style="font-weight: bold;">{{ follower.creator }}</span> started following you.
                                 </div>
                             {% endfor %}
@@ -121,7 +121,7 @@
                         <div class="card-body">
                             {% for following in following_list %}
                                 <div class="btn btn-block bg-secondary text-light text-left">
-                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <img src="{% static 'hubapp/img/user2.png' %}" alt="..." class="profile-img">
                                     Started following <span style="font-weight: bold;">{{ following.to }}</span>.
                                 </div>
                             {% endfor %}
