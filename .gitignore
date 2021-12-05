@@ -130,3 +130,6 @@ dmypy.json
 
 .idea
 *.exe
+
+# Secret key
+secrets.json
