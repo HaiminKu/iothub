@@ -1,0 +1,125 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'myprofile' %}">My Profile</a> >
+    <a href="{% url 'profiles' %}">Profile List</a> >
+    <a href="">Other User's Profile</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        {{ user.nickname }}'s  Profile
+    </h2>
+{% endblock title %}
+
+{% block content %}
+<div>
+    <div class="profile-container">
+        <div class="profile-top">
+            {% load static %}
+            <div>
+                <img src="{% static 'hubapp/img/fox.png' %}" alt="this should be a picture..." class="top-profile-img">
+                <div class="top-profile">
+                    <span style="font-weight:bold;">Following</span>
+                    <p style="text-align: center;"><a href="{% url 'followinglist' user.id %}">{{ user.following.all|length }}</a></p>
+                </div>
+                <div class="top-profile">
+                    <span style="font-weight:bold;">Followers</span>
+                    <p style="text-align: center;"><a href="{% url 'followerlist' user.id %}">{{ user.followers.all|length }}</a></p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <p style="font-weight: bold; margin-bottom:2px">{{ user.username }}</p>
+                    <small style="color: #777777;">{{ user.email }}</small>
+                </div>
+            </div>
+        </div>
+        <div>
+            {% if user in request.user.following.all %}
+                <button onClick="location.href='{% url 'follow' user.pk %}'">Unfollow</button>
+            {% else %}
+                <button onClick="location.href='{% url 'follow' user.pk %}'">Follow</button>
+            {% endif %}
+        </div>
+    </div>
+
+        <div class="activity-container">
+            <h4>My Recent Activities</h4>
+                <div>
+                    {% load static %}
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Devices</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for device in new_devices %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Added <span style="font-weight: bold;">{{ device.device_name }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                   <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>Edited Devices</h5>
+                        </div>
+                       <div class="card-body">
+                            {% for e_device in edited_devices %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Edited <span style="font-weight: bold;">{{ e_device.device_name }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>Deleted Devices</h5>
+                        </div>
+                       <div class="card-body">
+                            {% for d_device in deleted %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Deleted a device.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Followers</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for follower in follower_list %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <span style="font-weight: bold;">{{ follower.creator }}</span> started following you.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Following</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for following in following_list %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Started following <span style="font-weight: bold;">{{ following.to }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+{% endblock content %}

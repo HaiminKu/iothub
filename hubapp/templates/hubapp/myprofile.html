@@ -1,0 +1,134 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'myprofile' %}">My Profile</a>
+{% endblock header %}
+
+{% block title %}
+<div>
+    <h2 style="display: inline-block">
+        {{ request.user.nickname }}'s  Profile
+    </h2>
+    <h3 style="float:right; vertical-align:middle">
+        <a href="{% url 'profiles' %}">View other users' profiles</a>
+    </h3>
+</div>
+{% endblock title %}
+
+{% block content %}
+    <div>
+        {% load static %}
+        <div class="profile-container">
+            <img src="{% static 'hubapp/img/fox.png' %}" alt="this should be a picture..." class="top-profile-img">
+            <div class="top-profile">
+                <span style="font-weight:bold;">Following</span>
+                <p style="text-align: center;"><a href="{% url 'followinglist' request.user.id %}">{{ request.user.following.all|length }}</a></p>
+            </div>
+            <div class="top-profile">
+                <span style="font-weight:bold;">Followers</span>
+                <p style="text-align: center;"><a href="{% url 'followerlist' request.user.id %}">{{ request.user.followers.all|length }}</a></p>
+            </div>
+            <div>
+                <div>
+                    <p style="font-weight: bold; margin-bottom:2px">{{ user.username }}</p>
+                    <small style="color: #777777;">{{ user.email }}</small>
+                </div>
+            </div>
+        </div>
+
+        <div id="my-edit-form-container">
+            <h4>Edit My Profile</h4>
+            <form id="my-edit-form" method="POST">
+                {% csrf_token %}
+                <div>Username: {{request.user.username}}</div>
+                <div>First Name: {{form.first_name}}</div>
+                <div>Last Name: {{form.last_name}}</div>
+                <div>Email Address: {{form.email}}</div>
+                <div>Nickname: {{form.nickname}}</div>
+                <div>Gender: {{form.gender}}</div>
+                <div><a href="{% url 'password' %}">Change Password</a></div>
+                <br>
+                <input type="submit" value="Submit">
+                <input type="reset" value="Cancel">
+            </form>
+        </div>
+
+        <div class="activity-container">
+            <h4>My Recent Activities</h4>
+                <div>
+                    {% load static %}
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Devices</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for device in new_devices %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Added <span style="font-weight: bold;">{{ device.device_name }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                   <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>Edited Devices</h5>
+                        </div>
+                       <div class="card-body">
+                            {% for e_device in edited_devices %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Edited <span style="font-weight: bold;">{{ e_device.device_name }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>Deleted Devices</h5>
+                        </div>
+                       <div class="card-body">
+                            {% for d_device in deleted %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Deleted a device.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Followers</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for follower in follower_list %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <span style="font-weight: bold;">{{ follower.creator }}</span> started following you.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Following</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for following in following_list %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Started following <span style="font-weight: bold;">{{ following.to }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+{% endblock content %}

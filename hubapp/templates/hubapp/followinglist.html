@@ -1,0 +1,42 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'myprofile' %}">My Profile</a> >
+    <a href="{% url 'profiles' %}">Profile List</a> >
+    <a href="">Following</a>
+{% endblock header %}
+
+{% block title %}
+<div>
+    <h2 style="display: inline-block">
+        Following List
+    </h2>
+    <h3 style="float:right; vertical-align:middle">
+        <a href="{% url 'profiles' %}">View other users' profiles</a>
+    </h3>
+</div>
+{% endblock title %}
+
+{% block content %}
+<div>
+    <table class="devices-list">
+         <thead>
+            <tr>
+                <th>NICKNAME</th>
+                <th>EMAIL ADDRESS</th>
+                <th>Link</th>
+            </tr>
+         </thead>
+         <tbody>
+        {% for following in following_list %}
+             <tr>
+                 <td>{{ following.nickname }}</td>
+                 <td>{{ following.email }}</td>
+                 <td><button onclick="location.href='{% url 'other_profile' following.id %}'">View Profile</button></td>
+             </tr>
+        {% endfor %}
+         </tbody>
+    </table>
+</div>
+{% endblock content %}

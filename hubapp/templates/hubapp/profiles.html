@@ -1,0 +1,39 @@
+{% extends "hubapp/base.html" %}
+
+{% block header %}
+    <a href="{% url 'index' %}">Home</a> >
+    <a href="{% url 'myprofile' %}">My Profile</a> >
+    <a href="{% url 'profiles' %}">Profile List</a>
+{% endblock header %}
+
+{% block title %}
+    <h2>
+        User Profile List
+    </h2>
+{% endblock title %}
+
+{% block content %}
+    <table class="devices-list">
+         <thead>
+            <tr>
+                <th>USER NICKNAME</th>
+                <th>USER USERNAME</th>
+                <th>USER EMAIL</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+         <tbody>
+        {% for user in registered_users %}
+            {% if user != request.user %}
+             <tr>
+                 <td>{{ user.username }}</td>
+                 <td>{{ user.nickname }}</td>
+                 <td>{{ user.email }}</td>
+                 <td><button onclick="location.href='{% url 'other_profile' user.id %}'">View Profile</button></td>
+             </tr>
+            {% else %}
+            {% endif %}
+        {% endfor %}
+         </tbody>
+    </table>
+{% endblock content %}
