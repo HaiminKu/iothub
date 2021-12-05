@@ -5,11 +5,13 @@
     <title>IoT Hub</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'hubapp/style.css' %}">
+    <link rel="title icon" type="image/png" href="{% static 'hubapp/img/smarthome.png' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 </head>
 <body>
     <div id="header">
         <div id="nav-left">
-            <a href="{% url 'index' %}" class="selected"><img src="{% static 'hubapp/img/smarthome.png' %}" alt="this should be a picture..." style="width: 40px; height: auto; vertical-align:middle; margin-right:20px;">IoT Hub</a>
+            <a href="{% url 'index' %}" class="selected"><img src="{% static 'hubapp/img/smarthome.png' %}" alt="..." style="width: 40px; height: auto; vertical-align:middle; margin-right:20px;">IoT Hub</a>
             <a href="{% url 'add' %}" class="tab">Connect</a>
             <a href="{% url 'list' %}" class="tab">Manage</a>
             <a href="{% url 'monitor' %}" class="tab">Monitor</a>
@@ -25,13 +27,16 @@
         </div>
 
         <div id="nav-right">
-          <img src="{% static 'hubapp/img/user.png' %}" alt="this should be a picture..." style="width: 20px; height: auto; vertical-align:middle;">
             {% if user.is_authenticated  %}
+                <img src="{% static 'hubapp/img/user.png' %}" alt="..." style="width: 20px; height: auto; vertical-align:middle;">
+                <a href="{% url 'myprofile' %}">My Profile</a> |
+                <img src="{% static 'hubapp/img/logout.png' %}" alt="..." style="width: 20px; height: auto; vertical-align:middle;">
                 <a href="{% url 'signout' %}">Sign out</a> |
             {% else %}
+                <img src="{% static 'hubapp/img/login.png' %}" alt="..." style="width: 20px; height: auto; vertical-align:middle;">
                 <a href="{% url 'signin' %}">Sign in</a> |
             {% endif %}
-          <img src="{% static 'hubapp/img/call.png' %}" alt="this should be a picture..." style="width: 19px; height: auto; vertical-align:middle;">
+          <img src="{% static 'hubapp/img/call.png' %}" alt="..." style="width: 19px; height: auto; vertical-align:middle;">
           <a href="{% url 'contactus' %}">Contact us</a>
         </div>
       </div>
@@ -49,6 +54,7 @@
               {% endif %}
           </div>
         </div>
+
         <div class="bottom-row">
           <div class="left-column">
             <h4>Connect your devices</h4>
@@ -66,8 +72,151 @@
             <p class="italic-text"><a href="{% url 'monitor' %}">>> Go to "Monitor"</a></p>
           </div>
         </div>
-      </div>
 
+        {% if user.is_authenticated  %}
+        <div>
+            <div id="my-activity-container" class="my-column">
+                <h4>My Recent Activities</h4>
+                <div>
+                    {% load static %}
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Devices</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for device in new_devices %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Added <span style="font-weight: bold;">{{ device.device_name }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                   <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>Edited Devices</h5>
+                        </div>
+                       <div class="card-body">
+                            {% for e_device in edited_devices %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Edited <span style="font-weight: bold;">{{ e_device.device_name }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>Deleted Devices</h5>
+                        </div>
+                       <div class="card-body">
+                            {% for d_device in deleted %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Deleted a device.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Followers</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for follower in follower_list %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    <span style="font-weight: bold;">{{ follower.creator }}</span> started following you.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="card mb-3 box">
+                        <div class="card-header">
+                            <h5>New Following</h5>
+                        </div>
+                        <div class="card-body">
+                            {% for following in following_list %}
+                                <div class="btn btn-block bg-secondary text-light text-left">
+                                    <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                    Started following <span style="font-weight: bold;">{{ following.to }}</span>.
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="other-activity-container" class="other-column">
+                <h4>Following Users' Recent Activities</h4>
+                    <div>
+                        {% load static %}
+                        <div class="card mb-3 box">
+                            <div class="card-header">
+                                <h5>New Devices</h5>
+                            </div>
+                            <div class="card-body">
+                                {% for f_device in fuser_new_devices %}
+                                    <div class="btn btn-block bg-secondary text-light text-left">
+                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <span style="font-weight: bold;">{{ f_device.user }}</span> added a new device.
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                       <div class="card mb-3 box">
+                            <div class="card-header">
+                                <h5>Edited Devices</h5>
+                            </div>
+                           <div class="card-body">
+                                {% for f_e_device in fuser_edited_devices %}
+                                    <div class="btn btn-block bg-secondary text-light text-left">
+                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <span style="font-weight: bold;">{{ f_e_device.user }}</span> edited a device.
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="card mb-3 box">
+                            <div class="card-header">
+                                <h5>Deleted Devices</h5>
+                            </div>
+                            <div class="card-body">
+                                {% for f_d_device in fuser_deleted_devices %}
+                                    <div class="btn btn-block bg-secondary text-light text-left">
+                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <span style="font-weight: bold;">{{ f_d_device.creator}}</span> deleted a device.
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="card mb-3 box">
+                            <div class="card-header">
+                                <h5>New Connections</h5>
+                            </div>
+                            <div class="card-body">
+                                {% for f in fuser_following_list %}
+                                    <div class="btn btn-block bg-secondary text-light text-left">
+                                        <img src="{% static 'hubapp/img/fox.png' %}" alt="..." class="profile-img">
+                                        <span style="font-weight: bold;">{{ f.creator }}</span> started following <span style="font-weight: bold;">{{ f.to }}</span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% else %}
+        {% endif %}
+    </div>
       <div id="footer">
         <div id="footer-menu">
           <a href="{% url 'index' %}" class="selected">Home</a> |

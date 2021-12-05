@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib import admin
 
 from . import views
 
@@ -17,4 +18,11 @@ urlpatterns = [
     path('contactus/', views.contactus, name='contactus'),
     path('news/', views.news, name='news'),
     path('permission/', views.permission, name='permission'),
+    path('myprofile/', views.myprofile, name='myprofile'),
+    path('profiles/', views.profiles, name='profiles'),
+    path('<int:user_id>/other_profile/', views.other_profile, name='other_profile'),
+    path('password/', views.password, name='password'),
+    path('<int:user_id>/follow/', views.follow, name='follow'),
+    path('<int:user_id>/followerlist/', views.followerlist, name='followerlist'),
+    path('<int:user_id>/followinglist/', views.followinglist, name='followinglist'),
 ]

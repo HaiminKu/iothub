@@ -13,10 +13,10 @@
 {% endblock title %}
 
 {% block content %}
-    <form id="register-form" method="post">
+    <form class="register-form" method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Submit" onclick="send()">
+        <input type="submit" value="Submit">
         <input type="reset" value="Cancel">
     </form>
 {% endblock content %}

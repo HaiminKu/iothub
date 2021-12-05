@@ -17,11 +17,11 @@ body{
 }
 
 #nav-left {
-    min-width: 55%;
+    min-width: 45%;
 }
 
 #nav-left .tab:hover {
-    background-color: lightgray;
+    background-color: pink;
 }
 
 #nav-left > a {
@@ -53,7 +53,7 @@ img {
 }
 
 #search {
-    min-width: 15%;
+    min-width: 10%;
 }
 
 /* Style the content */
@@ -66,6 +66,12 @@ img {
 .top-row {
     background-color: lightgray;
 }
+
+.bottom-row {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 
 #title-container {
     padding: 3vh 2vw 1vh 2vw;
@@ -110,14 +116,13 @@ img {
     box-shadow: 0 1px 0 #d9d9d9;
 }
 
-#register-form {
+.register-form {
     padding: 25px 30px;
     background-color: darkgray;
-
     font-weight: bold;
 }
 
-#register-form > div {
+.register-form > div {
     margin-bottom: 10px;
 }
 
@@ -175,7 +180,7 @@ li {
 }
 
 h3 {
-    color: #777777;
+    olor: #777777;c
 }
 
 p > a {
@@ -234,18 +239,69 @@ p > a {
     padding:2px;
 }
 
-.article-container {
-    margin-bottom: 30px;
-    border-radius: 30px;
+.box {
+    transition-property: box-shadow, transform;
+    transition-duration: 1s;
+}
+
+.box:hover {
+    box-shadow: 1px 2px 8px 0px #00bcffb0;
+    transform: translateY(-9px);
+}
+
+.img-box {
+    padding: 20px;
+}
+
+.img-box img {
+    border-radius: 40px;
+    padding: 20px;
+    object-fit: cover;
+}
+
+.profile-container {
     padding: 30px;
     background-color: white;
-    font-family: Helvetica, sans-serif;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+#my-edit-form-container {
+    padding: 30px;
+    background-color: white;
+}
+
+#my-edit-form {
+    padding: 20px;
+    font-weight: bold;
+    background-color: rgba(0,0,0,.03);
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
+
+#my-edit-form > div {
+    margin-bottom: 10px;
+}
+
+.activity-container {
+    padding: 30px;
+    background-color: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#my-activity-container {
+
+}
+
+#other-activity-container {
+
 }
 
 .article-title {
     font-size: 15pt;
     font-weight: bold;
-
 }
 
 .article-date {
@@ -269,6 +325,30 @@ p > a {
 
 .input-button {
     padding: 10px;
+}
+
+.profile-top {
+    margin-bottom: 30px;
+}
+
+.profile-img {
+    width: 35px;
+    margin-right: 15px;
+}
+
+.top-profile-img {
+    width: 45px;
+    height: auto;
+    margin-right: 10vh;
+    vertical-align:middle;
+    display:inline-block;
+}
+
+.top-profile {
+    display:inline-block;
+    margin-right: 5vh;
+    vertical-align:top;
+    font-size: 15px;
 }
 
 /* Style the footer */
@@ -317,7 +397,13 @@ p > a {
         text-align: center;
         margin-top: 5vh;
     }
+    .my-column{
+        width: 100%;
+    }
 
+    .other-column{
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 1000px) {
@@ -348,5 +434,15 @@ p > a {
         width: 50%;
         text-align: center;
         margin-top: 20vh;
+    }
+
+    .my-column {
+        float: left;
+        width: 49%;
+    }
+
+    .other-column{
+        float: right;
+        width: 49%;
     }
 }

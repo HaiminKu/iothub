@@ -5,8 +5,9 @@
     <title>IoT Hub</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'hubapp/style.css' %}">
+    <link rel="title icon" type="image/png" href="{% static 'hubapp/img/smarthome.png' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static 'hubapp/alert_msg.js' %}"></script>
     <script src="{% static 'hubapp/data_visualization.js' %}"></script>
 </head>
 <body>
@@ -28,10 +29,13 @@
         </div>
 
         <div id="nav-right">
-          <img src="{% static 'hubapp/img/user.png' %}" alt="this should be a picture..." style="width: 20px; height: auto; vertical-align:middle;">
-          {% if user.is_authenticated  %}
+            {% if user.is_authenticated  %}
+                <img src="{% static 'hubapp/img/user.png' %}" alt="this should be a picture..." style="width: 20px; height: auto; vertical-align:middle;">
+                 <a href="{% url 'myprofile' %}">My Profile</a> |
+                <img src="{% static 'hubapp/img/logout.png' %}" alt="this should be a picture..." style="width: 20px; height: auto; vertical-align:middle;">
                 <a href="{% url 'signout' %}">Sign out</a> |
             {% else %}
+                <img src="{% static 'hubapp/img/login.png' %}" alt="this should be a picture..." style="width: 20px; height: auto; vertical-align:middle;">
                 <a href="{% url 'signin' %}">Sign in</a> |
             {% endif %}
           <img src="{% static 'hubapp/img/call.png' %}" alt="this should be a picture..." style="width: 19px; height: auto; vertical-align:middle;">

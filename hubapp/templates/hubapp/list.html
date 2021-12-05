@@ -30,6 +30,7 @@
         </thead>
          <tbody>
         {% for item in registered_devices %}
+            {% if item.user_id == request.user.id %}
              <tr>
                  <td>
                      {% if user.is_active  %}
@@ -44,25 +45,19 @@
                  <td>{{ item.last_updated }}</td>
                  <td>{{ item.registered }}</td>
                  {% if user.is_active  %}
-                    {% if request.user.is_staff %}
-                        <td><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></td>
-                    {% else %}
-                        <td><button onclick="location.href='{% url 'permission' %}'">Edit</button></td>
-                    {% endif %}
+                    <td><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></td>
                 {% else %}
                     <td><span class="hidden"><button onclick="location.href='{% url 'edit' id=item.id %}'">Edit</button></span></td>
                 {% endif %}
 
                  {% if user.is_active  %}
-                    {% if request.user.is_staff %}
-                        <td><button onclick="location.href='{% url 'delete' id=item.id %}'">Delete</button></td>
-                    {% else %}
-                        <td><button onclick="location.href='{% url 'permission' %}'">Delete</button></td>
-                    {% endif %}
+                    <td><button onclick="location.href='{% url 'delete' id=item.id %}'">Delete</button></td>
                 {% else %}
                     <td><span class="hidden"><button onclick="location.href='{% url 'delete' id=item.id %}'">Delete</button></span></td>
                 {% endif %}
              </tr>
+            {% else %}
+            {% endif %}
         {% endfor %}
          </tbody>
     </table>
