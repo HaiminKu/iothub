@@ -152,16 +152,22 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 APIKEY = "d88506917e0742419f08fd41701b4b04"
 
 secret_file = os.path.join(BASE_DIR, 'secrets.json')
-with open(secret_file) as f:
-    secrets = json.loads(f.read())
 
-def get_secret(setting, secrets=secrets):
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
-SECRET_KEY = get_secret("SECRET_KEY")
+if os.path.isfile(os.path.join(BASE_DIR, 'secrets.json')) == True:
+    secret_file = os.path.join(BASE_DIR, 'secrets.json')
+
+    with open(secret_file) as f:
+        secrets = json.loads(f.read())
+
+    def get_secret(setting, secrets=secrets):
+        try:
+            return secrets[setting]
+        except KeyError:
+            error_msg = "Set the {} environment variable".format(setting)
+            raise ImproperlyConfigured(error_msg)
+    SECRET_KEY = get_secret("SECRET_KEY")
+else:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Email
 EMAIL_HOST = 'smtp.gmail.com'
