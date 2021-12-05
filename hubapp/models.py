@@ -24,12 +24,13 @@ class CustomUser(AbstractUser):
     gender_type_choices = (
         ('Male', 'Male'),
         ('Female', 'Female'),
-        ('Not to say', 'Not to say'),
+        ('Not to say', 'Not to say')
     )
     gender = models.CharField(max_length=10, choices=gender_type_choices)
     followers = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name='following'
+        related_name='following',
+        blank=True
     )
 
 class Activity(models.Model):

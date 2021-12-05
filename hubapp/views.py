@@ -241,7 +241,7 @@ def password(request):
 def follow(request, user_id):
     requested_user = get_object_or_404(get_user_model(), id=user_id)
     if request.user in requested_user.followers.all():
-        requested_user.followers.remove(request.user)
+        requested_user.followedefrs.remove(request.user)
     else:
         requested_user.followers.add(request.user)
 

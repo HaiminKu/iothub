@@ -21,13 +21,6 @@ class DeviceForm(forms.ModelForm):
         }
 
 class UserForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['first_name'].required = True
-        self.fields['last_name'].required = True
-        self.fields['email'].required = True
-        self.fields['gender'].required = True
-
     class Meta:
         model = CustomUser
         fields = ['username', 'password1', 'password2',  'first_name', 'last_name', 'email', 'nickname', 'gender']
