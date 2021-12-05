@@ -18,5 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     path('CNIT581-048-project3/', include('hubapp.urls')),
-    path('CNIT581-048-project3/admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]
