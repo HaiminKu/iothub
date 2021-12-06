@@ -34,7 +34,7 @@ def index(request):
 
 def list(request):
     if request.user.is_authenticated:
-        registered_devices = Devices.objects.all()
+        registered_devices = Devices.objects.all().order_by('registered')
         return render(request, 'hubapp/list.html', {'registered_devices': registered_devices})
     else:
         return redirect('signin')
@@ -205,7 +205,7 @@ def myprofile(request):
 
 def profiles(request):
     if request.user.is_authenticated:
-        registered_users = CustomUser.objects.all()
+        registered_users = CustomUser.objects.all().order_by('id')
         return render(request, 'hubapp/profiles.html', {'registered_users': registered_users})
     else:
         return redirect('signin')
