@@ -24,12 +24,16 @@
         </thead>
          <tbody>
         {% for user in registered_users %}
-            {% if user != request.user %}
+            {% if user != request.user%}
              <tr>
                  <td>{{ user.username }}</td>
                  <td>{{ user.nickname }}</td>
                  <td>{{ user.email }}</td>
-                 <td><button onclick="location.href='{% url 'other_profile' user.id %}'">View Profile</button></td>
+                 {% if user.is_staff%}
+                     <td></td>
+                 {% else %}
+                    <td><button onclick="location.href='{% url 'other_profile' user.id %}'">View Profile</button></td>
+                 {% endif %}
              </tr>
             {% else %}
             {% endif %}
