@@ -201,7 +201,7 @@ def myprofile(request):
         form = CustomUserChangeForm(instance=request.user)
         return render(request, 'hubapp/myprofile.html', {'form': form, 'follower_list': follower_list,
                                                          'following_list': following_list, 'new_devices':new_devices,
-                                                         'edited_devices': edited_devices})
+                                                         'edited_devices': edited_devices, 'deleted':deleted})
 
 def profiles(request):
     if request.user.is_authenticated:
